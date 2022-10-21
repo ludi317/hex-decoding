@@ -1,0 +1,15 @@
+goos: darwin
+goarch: arm64
+pkg: tst115
+BenchmarkFrom_Normal-10    	10592767	       104.9 ns/op
+BenchmarkFrom_Normal-10    	11443792	       104.7 ns/op
+BenchmarkFrom_Normal-10    	11462758	       104.7 ns/op
+BenchmarkFrom_Normal-10    	11438125	       104.7 ns/op
+BenchmarkFrom_Normal-10    	11458495	       104.8 ns/op
+BenchmarkFrom_Normal-10    	11446099	       104.7 ns/op
+BenchmarkFrom_Normal-10    	11472429	       105.1 ns/op
+BenchmarkFrom_Normal-10    	11441983	       104.7 ns/op
+BenchmarkFrom_Normal-10    	11412855	       104.5 ns/op
+BenchmarkFrom_Normal-10    	11468720	       104.6 ns/op
+PASS
+ok  	tst115	13.115s

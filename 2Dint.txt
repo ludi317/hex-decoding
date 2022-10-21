@@ -1,0 +1,8 @@
+goos: darwin
+goarch: arm64
+pkg: tst115
+BenchmarkFrom2DInt_Normal-10            	11519125	       104.3 ns/op
+BenchmarkFrom2DInt_Normal-10            	11503632	       104.1 ns/op
+BenchmarkFrom2DInt_Normal-10            	11487709	       104.1 ns/op
+BenchmarkFrom2DInt_Normal-10            	signal: interrupt
+FAIL	tst115	5.703s
