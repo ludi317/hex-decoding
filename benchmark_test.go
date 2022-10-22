@@ -187,7 +187,7 @@ func BenchmarkFrom2Dbyte(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From2Dbyte(hi, lo, ok)
 			sum += h
@@ -210,7 +210,7 @@ func BenchmarkFromBigString(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = FromBigString(hi, lo, ok)
 			sum += h
@@ -233,7 +233,7 @@ func BenchmarkFrom1Dbyte(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From1Dbyte(hi, lo, ok)
 			sum += h
@@ -256,7 +256,7 @@ func BenchmarkFrom2D(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From2DInt16(hi, lo, ok)
 			sum += h
@@ -284,7 +284,7 @@ func BenchmarkFrom1D(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From1D(hi, lo, ok)
 			sum += h
@@ -307,7 +307,7 @@ func BenchmarkFromSmallString(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = FromSmallString(hi, lo, ok)
 			sum += h
@@ -330,7 +330,7 @@ func BenchmarkFrom2SmallStrings(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From2SmallStrings(hi, lo, ok)
 			sum += h
@@ -353,7 +353,7 @@ func BenchmarkFromTableless(b *testing.B) {
 
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < 2_000_000; j += 2 {
+		for j := 0; j < len(hexStr); j += 2 {
 			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = FromTableless(hi, lo, ok)
 			sum += h
