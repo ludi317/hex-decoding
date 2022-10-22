@@ -1,3 +1,3 @@
-module tst115
+module hex_decoding
 
 go 1.19

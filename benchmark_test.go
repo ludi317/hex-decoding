@@ -179,7 +179,7 @@ func BenchmarkFrom2Dbyte(b *testing.B) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)
 	rand.Read(bin)
-	hex := hex.EncodeToString(bin)
+	hexStr := hex.EncodeToString(bin)
 
 	sum := _sum
 	ok := true
@@ -188,7 +188,7 @@ func BenchmarkFrom2Dbyte(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < 2_000_000; j += 2 {
-			hi, lo := hex[j], hex[j+1]
+			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From2Dbyte(hi, lo, ok)
 			sum += h
 		}
@@ -202,7 +202,7 @@ func BenchmarkFromBigString(b *testing.B) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)
 	rand.Read(bin)
-	hex := hex.EncodeToString(bin)
+	hexStr := hex.EncodeToString(bin)
 
 	sum := _sum
 	ok := true
@@ -211,7 +211,7 @@ func BenchmarkFromBigString(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < 2_000_000; j += 2 {
-			hi, lo := hex[j], hex[j+1]
+			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = FromBigString(hi, lo, ok)
 			sum += h
 		}
@@ -225,7 +225,7 @@ func BenchmarkFrom1Dbyte(b *testing.B) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)
 	rand.Read(bin)
-	hex := hex.EncodeToString(bin)
+	hexStr := hex.EncodeToString(bin)
 
 	sum := _sum
 	ok := true
@@ -234,7 +234,7 @@ func BenchmarkFrom1Dbyte(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < 2_000_000; j += 2 {
-			hi, lo := hex[j], hex[j+1]
+			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From1Dbyte(hi, lo, ok)
 			sum += h
 		}
@@ -248,7 +248,7 @@ func BenchmarkFrom2D(b *testing.B) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)
 	rand.Read(bin)
-	hex := hex.EncodeToString(bin)
+	hexStr := hex.EncodeToString(bin)
 
 	sum := _sum
 	ok := true
@@ -257,7 +257,7 @@ func BenchmarkFrom2D(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < 2_000_000; j += 2 {
-			hi, lo := hex[j], hex[j+1]
+			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From2DInt16(hi, lo, ok)
 			sum += h
 		}
@@ -276,7 +276,7 @@ func BenchmarkFrom1D(b *testing.B) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)
 	rand.Read(bin)
-	hex := hex.EncodeToString(bin)
+	hexStr := hex.EncodeToString(bin)
 
 	sum := _sum
 	ok := true
@@ -285,7 +285,7 @@ func BenchmarkFrom1D(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < 2_000_000; j += 2 {
-			hi, lo := hex[j], hex[j+1]
+			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = From1D(hi, lo, ok)
 			sum += h
 		}
@@ -345,7 +345,7 @@ func BenchmarkFromTableless(b *testing.B) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)
 	rand.Read(bin)
-	hex := hex.EncodeToString(bin)
+	hexStr := hex.EncodeToString(bin)
 
 	sum := _sum
 	ok := true
@@ -354,7 +354,7 @@ func BenchmarkFromTableless(b *testing.B) {
 	b.StartTimer()
 	for i := 0; i < b.N; i++ {
 		for j := 0; j < 2_000_000; j += 2 {
-			hi, lo := hex[j], hex[j+1]
+			hi, lo := hexStr[j], hexStr[j+1]
 			h, ok = FromTableless(hi, lo, ok)
 			sum += h
 		}
