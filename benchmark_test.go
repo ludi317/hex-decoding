@@ -11,6 +11,27 @@ var sink byte
 const inputSize = 12
 const reps = 10000
 
+// generic benchmarker. Swap out its From() func and rerun to compare with benchstat.
+func dBenchmarkFrom(b *testing.B) {
+	inputB := make([]byte, inputSize)
+	rand.Read(inputB)
+	input := hex.EncodeToString(inputB)
+
+	var s byte
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From1D(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
+			}
+		}
+	}
+	sink = s
+}
+
 func BenchmarkFrom2DInt(b *testing.B) {
 	inputB := make([]byte, inputSize)
 	rand.Read(inputB)
