@@ -8,7 +8,8 @@ import (
 
 var sink byte
 
-const inputSize = 256
+const inputSize = 12
+const reps = 10000
 
 func BenchmarkFrom2DInt(b *testing.B) {
 	inputB := make([]byte, inputSize)
@@ -18,10 +19,12 @@ func BenchmarkFrom2DInt(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := From2DInt(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From2DInt(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -38,10 +41,12 @@ func dBenchmarkFromMath(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := FromMath(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := FromMath(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -56,10 +61,12 @@ func BenchmarkFrom2DInt16(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := From2DInt16(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From2DInt16(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -74,17 +81,20 @@ func BenchmarkFrom1D(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From1D(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 
-		for j := 0; j < inputSize; j += 2 {
-			x, y := From1D(input[j], input[(j+1)], true)
-			if y {
-				s += x
 			}
 		}
 	}
 	sink = s
 }
 
+/*
 func BenchmarkFromSmallString(b *testing.B) {
 	inputB := make([]byte, inputSize)
 	rand.Read(inputB)
@@ -93,11 +103,12 @@ func BenchmarkFromSmallString(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-
-		for j := 0; j < inputSize; j += 2 {
-			x, y := FromSmallString(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := FromSmallString(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -112,10 +123,12 @@ func BenchmarkFrom2Dbyte(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := From2Dbyte(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From2Dbyte(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -130,11 +143,12 @@ func BenchmarkFromBigString(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := FromBigString(input[j], input[(j+1)], true)
-
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := FromBigString(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -149,10 +163,13 @@ func BenchmarkFrom1DByte(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := From1Dbyte(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From1Dbyte(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -167,11 +184,12 @@ func BenchmarkFrom2SmallStrings(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-
-		for j := 0; j < inputSize; j += 2 {
-			x, y := From2SmallStrings(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := From2SmallStrings(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
@@ -186,12 +204,15 @@ func BenchmarkFromBranching(b *testing.B) {
 	var s byte
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		for j := 0; j < inputSize; j += 2 {
-			x, y := FromBranching(input[j], input[(j+1)], true)
-			if y {
-				s += x
+		for k := 0; k < reps/inputSize; k++ {
+			for j := 0; j < inputSize; j += 2 {
+				x, y := FromBranching(input[j], input[(j+1)], true)
+				if y {
+					s += x
+				}
 			}
 		}
 	}
 	sink = s
 }
+*/
