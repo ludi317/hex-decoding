@@ -37,7 +37,7 @@ func From2Dbyte(hi, lo byte, ok bool) (byte, bool) {
 	return 0, false
 }
 
-func FromTableless(hi, lo byte, ok bool) (byte, bool) {
+func FromBranching(hi, lo byte, ok bool) (byte, bool) {
 	var ok1, ok2 bool
 	hi, ok1 = fromNibble(hi)
 	lo, ok2 = fromNibble(lo)

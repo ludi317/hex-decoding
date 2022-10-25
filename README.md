@@ -21,7 +21,7 @@ BenchmarkFrom2Dbyte_Normal-10           	 9968356	       120.3 ns/op
 BenchmarkFromBigString_Normal-10        	 9617901	       125.0 ns/op
 BenchmarkFrom1DByte_Normal-10           	 9577893	       125.2 ns/op
 BenchmarkFrom2SmallStrings_Normal-10    	 7255498	       164.7 ns/op
-BenchmarkFromTableless_Normal-10        	 3194462	       381.2 ns/op
+BenchmarkFromBranching_Normal-10        	 3194462	       381.2 ns/op
 
 
 ```
@@ -38,5 +38,5 @@ BenchmarkFrom2D-10                      	    1284	    933001 ns/op
 BenchmarkFrom1D-10                      	    1280	    934242 ns/op
 BenchmarkFromSmallString-10             	    1230	    973432 ns/op
 BenchmarkFrom2SmallStrings-10           	     961	   1246867 ns/op
-BenchmarkFromTableless-10               	     180	   6660506 ns/op
+BenchmarkFromBranching-10               	     180	   6660506 ns/op
 ```
