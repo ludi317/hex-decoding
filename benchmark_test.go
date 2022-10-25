@@ -8,25 +8,7 @@ import (
 
 var sink byte
 
-const hexInputSize = 1 << 13
-
-// generic benchmarker. Swap out its From() func and rerun to compare with
-// benchstat, which requires that both versions have the same benchmark name.
-func BenchmarkFrom(b *testing.B) {
-	inputB := make([]byte, hexInputSize/2)
-	rand.Read(inputB)
-	input := hex.EncodeToString(inputB)
-
-	var s byte
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		x, y := From2DInt16(input[i%hexInputSize], input[(i+1)%hexInputSize], true)
-		if y {
-			s += x
-		}
-	}
-	sink = s
-}
+const hexInputSize = 1 << 12
 
 func BenchmarkFrom2DInt16(b *testing.B) {
 	inputB := make([]byte, hexInputSize/2)
@@ -90,7 +72,6 @@ func BenchmarkFromSmallString(b *testing.B) {
 		}
 	}
 	sink = s
-
 }
 
 func BenchmarkFromBigString(b *testing.B) {
