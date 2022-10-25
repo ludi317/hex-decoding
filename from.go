@@ -39,12 +39,12 @@ func From2Dbyte(hi, lo byte, ok bool) (byte, bool) {
 
 func FromBranching(hi, lo byte, ok bool) (byte, bool) {
 	var ok1, ok2 bool
-	hi, ok1 = fromNibble(hi)
-	lo, ok2 = fromNibble(lo)
+	hi, ok1 = fromNibbleBranching(hi)
+	lo, ok2 = fromNibbleBranching(lo)
 	return (hi << 4) | lo, ok && ok1 && ok2
 }
 
-func fromNibble(r byte) (byte, bool) {
+func fromNibbleBranching(r byte) (byte, bool) {
 	if r <= '9' {
 		return r - '0', r >= '0'
 	}
@@ -52,6 +52,18 @@ func fromNibble(r byte) (byte, bool) {
 		return r - 'a' + 10, r <= 'f'
 	}
 	return r - 'A' + 10, 'A' <= r && r <= 'F'
+}
+
+func FromMath(hi, lo byte, ok bool) (byte, bool) {
+	var ok1, ok2 bool
+	hi, ok1 = fromNibbleMath(hi)
+	lo, ok2 = fromNibbleMath(lo)
+	return (hi << 4) | lo, ok && ok1 && ok2
+}
+
+// always assumes valid input, omitted from benchmarks
+func fromNibbleMath(d byte) (byte, bool) {
+	return (d & 0xf) + (d >> 6) + ((d >> 6) << 3), true
 }
 
 func FromSmallString(hi, lo byte, ok bool) (byte, bool) {
