@@ -66,7 +66,7 @@ func FromMath(hi, lo byte, ok bool) (byte, bool) {
 func fromNibbleMath(d byte) (byte, bool) {
 	// ascii numbers: 0x30, ..., 0x39
 	// ascii letters: 0x41, ..., 0x46
-	//				: 0x61, ..., 0x66
+	//              : 0x61, ..., 0x66
 	// (d >> 6) = 1 for ascii letters, and 0 for ascii numbers
 	// grab lower nibble for ascii numbers. done.
 	// grab lower nibble for acsii numbers and add 1 + 8
