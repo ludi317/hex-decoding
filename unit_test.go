@@ -54,6 +54,28 @@ func TestFrom2Dbyte(t *testing.T) {
 	}
 }
 
+func TestFrom2SmallArrays(t *testing.T) {
+	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
+	bin := make([]byte, 1_000_000)
+	rand.Read(bin)
+	hexStr := hex.EncodeToString(bin)
+
+	// decode the hex we just created, and check it matches bin
+	for j := 0; j < len(hexStr); j += 2 {
+		hi, lo := hexStr[j], hexStr[j+1]
+		h, ok := From2SmallArrays(hi, lo, true)
+		if !ok || bin[j/2] != h {
+			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
+		}
+	}
+
+	// negative cases
+	_, ok := From2SmallArrays('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
+	}
+}
+
 func TestFromSmallString(t *testing.T) {
 	// construct 2*1MB of hex encoded input, 1MB max (big enough to exceed L1D; small enough to fit in L3)
 	bin := make([]byte, 1_000_000)

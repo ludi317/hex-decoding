@@ -42,6 +42,22 @@ func BenchmarkFrom1DInt16(b *testing.B) {
 	sink = s
 }
 
+func BenchmarkFrom2SmallArrays(b *testing.B) {
+	inputB := make([]byte, hexInputSize/2)
+	rand.Read(inputB)
+	input := hex.EncodeToString(inputB)
+
+	var s byte
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		x, y := From2SmallArrays(input[i%hexInputSize], input[(i+1)%hexInputSize], true)
+		if y {
+			s += x
+		}
+	}
+	sink = s
+}
+
 func BenchmarkFrom2Dbyte(b *testing.B) {
 	inputB := make([]byte, hexInputSize/2)
 	rand.Read(inputB)

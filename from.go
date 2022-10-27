@@ -10,6 +10,12 @@ func From1DInt16(hi, lo byte, ok bool) (byte, bool) {
 	return byte(v), ok && v >= 0
 }
 
+func From2SmallArrays(hi, lo byte, ok bool) (byte, bool) {
+	hiInt16 := reverseHexTableHiInt16[hi]
+	loInt16 := reverseHexTableLoInt16[lo]
+	return byte(hiInt16 | loInt16), ok && hiInt16|loInt16 >= 0
+}
+
 func From2Dbyte(hi, lo byte, ok bool) (byte, bool) {
 	v := BigByteTable[hi][lo]
 	if v != 0 {
