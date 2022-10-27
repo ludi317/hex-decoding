@@ -20,16 +20,16 @@ $ go test -bench=.
 goos: darwin
 goarch: arm64
 pkg: hex_decoding
-BenchmarkFrom2DInt16-10          	912846892	         1.280 ns/op
-BenchmarkFrom1DInt16-10          	863098495	         1.341 ns/op
-BenchmarkFrom2SmallArrays-10     	877643402	         1.378 ns/op
-BenchmarkFrom2Dbyte-10           	867332463	         1.400 ns/op
-BenchmarkFromSmallString-10      	844460614	         1.416 ns/op
-BenchmarkFromBigString-10        	824723845	         1.475 ns/op
-BenchmarkFrom1DByte-10           	803816563	         1.447 ns/op
-BenchmarkFrom2SmallStrings-10    	697978095	         1.556 ns/op
-BenchmarkFromMath-10             	721555492	         1.652 ns/op
-BenchmarkFromBranching-10        	233219001	         5.091 ns/op
+BenchmarkFrom2DInt16-10          	926147457	         1.286 ns/op
+BenchmarkFrom1DInt16-10          	893009412	         1.345 ns/op
+BenchmarkFrom2SmallArrays-10     	874100672	         1.370 ns/op
+BenchmarkFrom2Dbyte-10           	866713334	         1.403 ns/op
+BenchmarkFromSmallString-10      	843199942	         1.422 ns/op
+BenchmarkFromBigString-10        	823967380	         1.486 ns/op
+BenchmarkFrom2SmallStrings-10    	813522324	         1.474 ns/op
+BenchmarkFrom1DByte-10           	824234324	         1.451 ns/op
+BenchmarkFromMath-10             	621640737	         1.928 ns/op
+BenchmarkFromBranching-10        	249396705	         4.878 ns/op
 ```
 ### FAQ 
 #### Is the 2D lookup table really the fastest?

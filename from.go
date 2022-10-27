@@ -44,6 +44,12 @@ func FromBigString(hi, lo byte, ok bool) (byte, bool) {
 	return 0, false
 }
 
+func From2SmallStrings(hi, lo byte, ok bool) (byte, bool) {
+	hiNew := reverseHexTableHi[hi]
+	loNew := reverseHexTableLo[lo]
+	return hiNew | loNew, ok && isHexadecimal[hi] && isHexadecimal[lo]
+}
+
 func From1Dbyte(hi, lo byte, ok bool) (byte, bool) {
 	v := BigByteArray[(uint16(hi)<<8 + uint16(lo))]
 	if v != 0 {
@@ -53,12 +59,6 @@ func From1Dbyte(hi, lo byte, ok bool) (byte, bool) {
 		return 0, ok
 	}
 	return 0, false
-}
-
-func From2SmallStrings(hi, lo byte, ok bool) (byte, bool) {
-	hiNew := reverseHexTableHi[hi]
-	loNew := reverseHexTableLo[lo]
-	return hiNew | loNew, ok && isHexadecimal[hi] && isHexadecimal[lo]
 }
 
 func FromMath(hi, lo byte, ok bool) (byte, bool) {

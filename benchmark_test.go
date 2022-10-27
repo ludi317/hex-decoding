@@ -106,22 +106,6 @@ func BenchmarkFromBigString(b *testing.B) {
 	sink = s
 }
 
-func BenchmarkFrom1DByte(b *testing.B) {
-	inputB := make([]byte, hexInputSize/2)
-	rand.Read(inputB)
-	input := hex.EncodeToString(inputB)
-
-	var s byte
-	b.ResetTimer()
-	for i := 0; i < b.N; i++ {
-		x, y := From1Dbyte(input[i%hexInputSize], input[(i+1)%hexInputSize], true)
-		if y {
-			s += x
-		}
-	}
-	sink = s
-}
-
 func BenchmarkFrom2SmallStrings(b *testing.B) {
 	inputB := make([]byte, hexInputSize/2)
 	rand.Read(inputB)
@@ -131,6 +115,22 @@ func BenchmarkFrom2SmallStrings(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		x, y := From2SmallStrings(input[i%hexInputSize], input[(i+1)%hexInputSize], true)
+		if y {
+			s += x
+		}
+	}
+	sink = s
+}
+
+func BenchmarkFrom1DByte(b *testing.B) {
+	inputB := make([]byte, hexInputSize/2)
+	rand.Read(inputB)
+	input := hex.EncodeToString(inputB)
+
+	var s byte
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		x, y := From1Dbyte(input[i%hexInputSize], input[(i+1)%hexInputSize], true)
 		if y {
 			s += x
 		}
