@@ -20,6 +20,11 @@ func TestFrom2DInt16(t *testing.T) {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
 	}
+	// negative cases
+	_, ok := From2DInt16('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
+	}
 }
 
 func TestFrom1DInt16(t *testing.T) {
@@ -36,6 +41,11 @@ func TestFrom1DInt16(t *testing.T) {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
 	}
+	// negative cases
+	_, ok := From1DInt16('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
+	}
 }
 
 func TestFrom2Dbyte(t *testing.T) {
@@ -51,6 +61,11 @@ func TestFrom2Dbyte(t *testing.T) {
 		if !ok || bin[j/2] != h {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
+	}
+	// negative cases
+	_, ok := From2Dbyte('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
 	}
 }
 
@@ -90,6 +105,11 @@ func TestFromSmallString(t *testing.T) {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
 	}
+	// negative cases
+	_, ok := FromSmallString('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
+	}
 }
 
 func TestFromBigString(t *testing.T) {
@@ -105,6 +125,11 @@ func TestFromBigString(t *testing.T) {
 		if !ok || bin[j/2] != h {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
+	}
+	// negative cases
+	_, ok := FromBigString('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
 	}
 }
 
@@ -122,6 +147,11 @@ func TestFrom2SmallStrings(t *testing.T) {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
 	}
+	// negative cases
+	_, ok := From2SmallStrings('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
+	}
 }
 
 func TestFrom1Dbyte(t *testing.T) {
@@ -137,6 +167,11 @@ func TestFrom1Dbyte(t *testing.T) {
 		if !ok || bin[j/2] != h {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
+	}
+	// negative cases
+	_, ok := From1Dbyte('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
 	}
 }
 
@@ -154,6 +189,11 @@ func TestFromMath(t *testing.T) {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
 	}
+	// negative cases
+	_, ok := FromMath('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
+	}
 }
 
 func TestFromBranching(t *testing.T) {
@@ -169,5 +209,10 @@ func TestFromBranching(t *testing.T) {
 		if !ok || bin[j/2] != h {
 			t.Fatalf("From(%c, %c) returned (0x%x, %v), expected 0x%x", hi, lo, h, ok, bin[j/2])
 		}
+	}
+	// negative cases
+	_, ok := FromBranching('l', 'r', true)
+	if ok {
+		t.Fatalf("want not hex, got hex")
 	}
 }
