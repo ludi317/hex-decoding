@@ -56,9 +56,9 @@ func From1Dbyte(hi, lo byte, ok bool) (byte, bool) {
 }
 
 func From2SmallStrings(hi, lo byte, ok bool) (byte, bool) {
-	hi = reverseHexTableHi[hi]
-	lo = reverseHexTableLo[lo]
-	return hi | lo, ok && hi <= 0xf0 && lo <= 0x0f
+	hiNew := reverseHexTableHi[hi]
+	loNew := reverseHexTableLo[lo]
+	return hiNew | loNew, ok && isHexadecimal[hi] && isHexadecimal[lo]
 }
 
 func FromMath(hi, lo byte, ok bool) (byte, bool) {
@@ -68,15 +68,15 @@ func FromMath(hi, lo byte, ok bool) (byte, bool) {
 	return (hi << 4) | lo, ok && ok1 && ok2
 }
 
-// always assumes valid input
 func fromNibbleMath(d byte) (byte, bool) {
+	// Here's how it works.
 	// ascii numbers: 0x30, ..., 0x39
 	// ascii letters: 0x41, ..., 0x46
 	//              : 0x61, ..., 0x66
 	// (d >> 6) = 1 for ascii letters, and 0 for ascii numbers
-	// get lower nibble for ascii numbers. done.
-	// get lower nibble for ascii letters, and add 1 + 8
-	return (d & 0xf) + (d >> 6) + ((d >> 6) << 3), true
+	// Get lower nibble of ascii number. Done.
+	// Get lower nibble for ascii letters. Add 1 + 8.
+	return (d & 0xf) + (d >> 6) + ((d >> 6) << 3), isHexadecimal[d]
 }
 
 func FromBranching(hi, lo byte, ok bool) (byte, bool) {

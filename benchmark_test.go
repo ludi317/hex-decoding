@@ -138,8 +138,6 @@ func BenchmarkFrom2SmallStrings(b *testing.B) {
 	sink = s
 }
 
-// Note that FromMath() always assumes input is valid.
-// Even with this advantage, it is slower than a lookup table.
 func BenchmarkFromMath(b *testing.B) {
 	inputB := make([]byte, hexInputSize/2)
 	rand.Read(inputB)
