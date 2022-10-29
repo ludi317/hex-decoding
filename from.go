@@ -75,8 +75,9 @@ func fromNibbleMath(d byte) (byte, bool) {
 	//              : 0x61, ..., 0x66
 	// (d >> 6) = 1 for ascii letters, and 0 for ascii numbers
 	// Get lower nibble of ascii number. Done.
-	// Get lower nibble for ascii letters. Add 1 + 8.
-	return (d & 0xf) + (d >> 6) + ((d >> 6) << 3), isHexadecimal[d]
+	// Get lower nibble for ascii letters. Add 8 + 1.
+	isLetter := d >> 6
+	return (d&0xf | isLetter<<3) + isLetter, isHexadecimal[d]
 }
 
 func FromBranching(hi, lo byte, ok bool) (byte, bool) {
