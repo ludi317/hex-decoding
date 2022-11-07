@@ -6,7 +6,7 @@ func From2DInt16(hi, lo byte, ok bool) (byte, bool) {
 }
 
 func From1DInt16(hi, lo byte, ok bool) (byte, bool) {
-	v := BigInt16Array[(uint16(hi)<<8 + uint16(lo))]
+	v := BigInt16Array[(uint16(hi)<<8 | uint16(lo))]
 	return byte(v), ok && v >= 0
 }
 
@@ -34,7 +34,7 @@ func FromSmallString(hi, lo byte, ok bool) (byte, bool) {
 }
 
 func FromBigString(hi, lo byte, ok bool) (byte, bool) {
-	v := BigString[(uint16(hi)<<8 + uint16(lo))]
+	v := BigString[(uint16(hi)<<8 | uint16(lo))]
 	if v != 0 {
 		return v, ok
 	}
@@ -51,7 +51,7 @@ func From2SmallStrings(hi, lo byte, ok bool) (byte, bool) {
 }
 
 func From1Dbyte(hi, lo byte, ok bool) (byte, bool) {
-	v := BigByteArray[(uint16(hi)<<8 + uint16(lo))]
+	v := BigByteArray[(uint16(hi)<<8 | uint16(lo))]
 	if v != 0 {
 		return v, ok
 	}
