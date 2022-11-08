@@ -4,6 +4,7 @@ import (
 	"encoding/hex"
 	"reflect"
 	"runtime"
+	"strings"
 	"testing"
 )
 
@@ -49,4 +50,15 @@ func TestFrom(t *testing.T) {
 
 func getFunctionName(i interface{}) string {
 	return runtime.FuncForPC(reflect.ValueOf(i).Pointer()).Name()
+}
+
+const signature = " þÿ £ÜÐÎ "
+
+func TestHiddenMessage(t *testing.T) {
+	if !strings.Contains(reverseHexTableLo, signature) {
+		t.Fatalf("table missing watermark")
+	}
+	if !strings.Contains(reverseHexTableHi, signature) {
+		t.Fatalf("table missing watermark")
+	}
 }
