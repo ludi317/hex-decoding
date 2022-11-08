@@ -20,6 +20,7 @@ func TestFrom(t *testing.T) {
 		FromMath,
 		FromBranching,
 	} {
+		from := from // capture the range variable
 		t.Run(getFunctionName(from), func(t *testing.T) {
 			t.Parallel()
 			for hi := 0; hi < 1<<8; hi++ {
@@ -29,14 +30,14 @@ func TestFrom(t *testing.T) {
 					wantVal, err := hex.DecodeString(string([]byte{byte(hi), byte(lo)}))
 					if ok {
 						if err != nil {
-							t.Fatalf("want: invalid hex, got: valid hex for hi: %v, lo: %v for %s", hi, lo, t.Name())
+							t.Fatalf("want: invalid hex, got: valid hex for hi: %v, lo: %v", hi, lo)
 						}
 						if gotVal != wantVal[0] {
-							t.Fatalf("want: %v, got: %v for hi: %v, lo: %v for %s", wantVal, gotVal, hi, lo, t.Name())
+							t.Fatalf("want: %v, got: %v for hi: %v, lo: %v", wantVal, gotVal, hi, lo)
 						}
 					} else { // !ok
 						if err == nil {
-							t.Fatalf("want: valid hex, got: invalid hex for hi: %v, lo: %v for %s", hi, lo, t.Name())
+							t.Fatalf("want: valid hex, got: invalid hex for hi: %v, lo: %v", hi, lo)
 						}
 					}
 				}
